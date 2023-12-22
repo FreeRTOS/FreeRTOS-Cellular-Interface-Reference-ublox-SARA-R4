@@ -2495,22 +2495,43 @@ static CellularPktStatus_t _Cellular_RecvFuncGetPdpContextSettings( CellularCont
                             case ( CELLULAR_PDN_STATUS_POS_CONTEXT_TYPE ):
                                 LogDebug( ( "_Cellular_RecvFuncGetPdpContextSettings: Context Type pToken: %s", pToken ) );
 
-                                ( void ) memcpy( ( void * ) pPDPContextsInfo->ipType[ contextId - 1 ],
-                                                 ( void * ) pToken, CELULAR_PDN_CONTEXT_TYPE_MAX_SIZE + 1U );
+                                ( void ) strncpy( ( void * ) pPDPContextsInfo->ipType[ contextId - 1 ],
+                                                  ( void * ) pToken, CELULAR_PDN_CONTEXT_TYPE_MAX_SIZE + 1U );
+
+                                if( pPDPContextsInfo->ipType[ contextId - 1 ][ CELULAR_PDN_CONTEXT_TYPE_MAX_SIZE ] != '\0' )
+                                {
+                                    LogWarn( ( "_Cellular_RecvFuncGetPdpContextSettings: Context Type pToken: %s longer than CELULAR_PDN_CONTEXT_TYPE_MAX_SIZE.", pToken ) );
+                                    pPDPContextsInfo->ipType[ contextId - 1 ][ CELULAR_PDN_CONTEXT_TYPE_MAX_SIZE ] = '\0';
+                                }
+
                                 break;
 
                             case ( CELLULAR_PDN_STATUS_POS_APN_NAME ):
                                 LogDebug( ( "_Cellular_RecvFuncGetPdpContextSettings: Context APN name pToken: %s", pToken ) );
 
-                                ( void ) memcpy( ( void * ) pPDPContextsInfo->apnName[ contextId - 1 ],
-                                                 ( void * ) pToken, CELLULAR_APN_MAX_SIZE + 1U );
+                                ( void ) strncpy( ( void * ) pPDPContextsInfo->apnName[ contextId - 1 ],
+                                                  ( void * ) pToken, CELLULAR_APN_MAX_SIZE + 1U );
+
+                                if( pPDPContextsInfo->apnName[ contextId - 1 ][ CELLULAR_APN_MAX_SIZE ] != '\0' )
+                                {
+                                    LogWarn( ( "_Cellular_RecvFuncGetPdpContextSettings: Context APN name pToken: %s longer than CELLULAR_APN_MAX_SIZE.", pToken ) );
+                                    pPDPContextsInfo->apnName[ contextId - 1 ][ CELLULAR_APN_MAX_SIZE ] = '\0';
+                                }
+
                                 break;
 
                             case ( CELLULAR_PDN_STATUS_POS_IP_ADDRESS ):
                                 LogDebug( ( "_Cellular_RecvFuncGetPdpContextSettings: Context IP address pToken: %s", pToken ) );
 
-                                ( void ) memcpy( ( void * ) pPDPContextsInfo->ipAddress[ contextId - 1 ],
-                                                 ( void * ) pToken, CELLULAR_IP_ADDRESS_MAX_SIZE + 1U );
+                                ( void ) strncpy( ( void * ) pPDPContextsInfo->ipAddress[ contextId - 1 ],
+                                                  ( void * ) pToken, CELLULAR_IP_ADDRESS_MAX_SIZE + 1U );
+
+                                if( pPDPContextsInfo->ipAddress[ contextId - 1 ][ CELLULAR_IP_ADDRESS_MAX_SIZE ] != '\0' )
+                                {
+                                    LogWarn( ( "_Cellular_RecvFuncGetPdpContextSettings: Context IP address pToken: %s longer than CELLULAR_IP_ADDRESS_MAX_SIZE.", pToken ) );
+                                    pPDPContextsInfo->ipAddress[ contextId - 1 ][ CELLULAR_IP_ADDRESS_MAX_SIZE ] = '\0';
+                                }
+
                                 break;
 
                             default:

@@ -124,10 +124,10 @@ typedef enum MNOProfileType
  */
 typedef struct CellularPdnContextInfo
 {
-    bool contextsPresent[ MAX_PDP_CONTEXTS ];                             /**< Context present in +CGDCONT response or not. */
-    char ipType[ MAX_PDP_CONTEXTS ][ CELULAR_PDN_CONTEXT_TYPE_MAX_SIZE ]; /**< PDN Context type. */
-    char apnName[ MAX_PDP_CONTEXTS ][ CELLULAR_APN_MAX_SIZE ];            /**< APN name. */
-    char ipAddress[ MAX_PDP_CONTEXTS ][ CELLULAR_IP_ADDRESS_MAX_SIZE ];   /**< IP address. */
+    bool contextsPresent[ MAX_PDP_CONTEXTS ];                                  /**< Context present in +CGDCONT response or not. */
+    char ipType[ MAX_PDP_CONTEXTS ][ CELULAR_PDN_CONTEXT_TYPE_MAX_SIZE + 1U ]; /**< PDN Context type. */
+    char apnName[ MAX_PDP_CONTEXTS ][ CELLULAR_APN_MAX_SIZE + 1U ];            /**< APN name. */
+    char ipAddress[ MAX_PDP_CONTEXTS ][ CELLULAR_IP_ADDRESS_MAX_SIZE + 1U ];   /**< IP address. */
 } CellularPdnContextInfo_t;
 
 /**
