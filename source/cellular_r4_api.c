@@ -259,8 +259,6 @@ static CellularATError_t getDataFromResp( const CellularATCommandResponse_t * pA
 
 /*-----------------------------------------------------------*/
 
-/* FreeRTOS Cellular Library types. */
-/* coverity[misra_c_2012_rule_8_13_violation] */
 static CellularPktStatus_t _Cellular_RecvFuncData( CellularContext_t * pContext,
                                                    const CellularATCommandResponse_t * pAtResp,
                                                    void * pData,
@@ -394,8 +392,6 @@ static CellularError_t storeAccessModeAndAddress( CellularContext_t * pContext,
 
 /*-----------------------------------------------------------*/
 
-/* FreeRTOS Cellular Library types. */
-/* coverity[misra_c_2012_rule_8_13_violation] */
 static CellularPktStatus_t _Cellular_RecvFuncGetSocketId( CellularContext_t * pContext,
                                                           const CellularATCommandResponse_t * pAtResp,
                                                           void * pData,
@@ -496,15 +492,10 @@ static CellularError_t _Cellular_GetSocketNumber( CellularHandle_t cellularHandl
 
 /*-----------------------------------------------------------*/
 
-/* FreeRTOS Cellular Library API. */
-/* coverity[misra_c_2012_rule_8_7_violation] */
-/* coverity[misra_c_2012_rule_8_13_violation] */
 CellularError_t Cellular_SocketRecv( CellularHandle_t cellularHandle,
                                      CellularSocketHandle_t socketHandle,
-                                     /* coverity[misra_c_2012_rule_8_13_violation] */
                                      uint8_t * pBuffer,
                                      uint32_t bufferLength,
-                                     /* coverity[misra_c_2012_rule_8_13_violation] */
                                      uint32_t * pReceivedDataLength )
 {
     CellularContext_t * pContext = ( CellularContext_t * ) cellularHandle;
@@ -592,7 +583,6 @@ CellularError_t Cellular_SocketRecv( CellularHandle_t cellularHandle,
 
             /* The return value of snprintf is not used.
              * The max length of the string is fixed and checked offline. */
-            /* coverity[misra_c_2012_rule_21_6_violation]. */
             ( void ) snprintf( cmdBuf, CELLULAR_AT_CMD_TYPICAL_MAX_SIZE,
                                "%s%u,%u", "AT+USORD=", sessionId, recvLen );
             pktStatus = _Cellular_TimeoutAtcmdDataRecvRequestWithCallback( pContext,
@@ -651,14 +641,10 @@ static CellularPktStatus_t socketSendDataPrefix( void * pCallbackContext,
 
 /*-----------------------------------------------------------*/
 
-/* FreeRTOS Cellular Library API. */
-/* coverity[misra_c_2012_rule_8_7_violation] */
-/* coverity[misra_c_2012_rule_8_13_violation] */
 CellularError_t Cellular_SocketSend( CellularHandle_t cellularHandle,
                                      CellularSocketHandle_t socketHandle,
                                      const uint8_t * pData,
                                      uint32_t dataLength,
-                                     /* coverity[misra_c_2012_rule_8_13_violation] */
                                      uint32_t * pSentDataLength )
 {
     CellularContext_t * pContext = ( CellularContext_t * ) cellularHandle;
@@ -735,7 +721,6 @@ CellularError_t Cellular_SocketSend( CellularHandle_t cellularHandle,
 
         /* The return value of snprintf is not used.
          * The max length of the string is fixed and checked offline. */
-        /* coverity[misra_c_2012_rule_21_6_violation]. */
         ( void ) snprintf( cmdBuf, CELLULAR_AT_CMD_TYPICAL_MAX_SIZE, "%s%u,%u",
                            "AT+USOWR=", sessionId, atDataReqSocketSend.dataLen );
 
@@ -763,8 +748,6 @@ CellularError_t Cellular_SocketSend( CellularHandle_t cellularHandle,
 
 /*-----------------------------------------------------------*/
 
-/* FreeRTOS Cellular Library API. */
-/* coverity[misra_c_2012_rule_8_7_violation] */
 CellularError_t Cellular_SocketClose( CellularHandle_t cellularHandle,
                                       CellularSocketHandle_t socketHandle )
 {
@@ -847,8 +830,6 @@ CellularError_t Cellular_SocketClose( CellularHandle_t cellularHandle,
 
 /*-----------------------------------------------------------*/
 
-/* FreeRTOS Cellular Library API. */
-/* coverity[misra_c_2012_rule_8_7_violation] */
 CellularError_t Cellular_SocketConnect( CellularHandle_t cellularHandle,
                                         CellularSocketHandle_t socketHandle,
                                         CellularSocketAccessMode_t dataAccessMode,
@@ -927,7 +908,6 @@ CellularError_t Cellular_SocketConnect( CellularHandle_t cellularHandle,
     {
         /* The return value of snprintf is not used.
          * The max length of the string is fixed and checked offline. */
-        /* coverity[misra_c_2012_rule_21_6_violation]. */
         ( void ) snprintf( cmdBuf, CELLULAR_AT_CMD_MAX_SIZE,
                            "AT+USOCO=%u,\"%s\",%d,1",
                            sessionId,
@@ -956,8 +936,6 @@ CellularError_t Cellular_SocketConnect( CellularHandle_t cellularHandle,
 
 /*-----------------------------------------------------------*/
 
-/* FreeRTOS Cellular Library API. */
-/* coverity[misra_c_2012_rule_8_7_violation] */
 CellularError_t Cellular_GetSimCardStatus( CellularHandle_t cellularHandle,
                                            CellularSimCardStatus_t * pSimCardStatus )
 {
@@ -1006,8 +984,6 @@ CellularError_t Cellular_GetSimCardStatus( CellularHandle_t cellularHandle,
 
 /*-----------------------------------------------------------*/
 
-/* FreeRTOS Cellular Library API. */
-/* coverity[misra_c_2012_rule_8_7_violation] */
 CellularError_t Cellular_DeactivatePdn( CellularHandle_t cellularHandle,
                                         uint8_t contextId )
 {
@@ -1128,8 +1104,6 @@ CellularError_t Cellular_DeactivatePdn( CellularHandle_t cellularHandle,
 
 /*-----------------------------------------------------------*/
 
-/* FreeRTOS Cellular Library prototype. */
-/* coverity[misra_c_2012_rule_8_13_violation] */
 static CellularPktStatus_t _Cellular_RecvFuncPacketSwitchStatus( CellularContext_t * pContext,
                                                                  const CellularATCommandResponse_t * pAtResp,
                                                                  void * pData,
@@ -1386,8 +1360,6 @@ static CellularError_t _Cellular_GetPacketSwitchStatus( CellularHandle_t cellula
 
 /*-----------------------------------------------------------*/
 
-/* FreeRTOS Cellular Library API. */
-/* coverity[misra_c_2012_rule_8_7_violation] */
 CellularError_t Cellular_ActivatePdn( CellularHandle_t cellularHandle,
                                       uint8_t contextId )
 {
@@ -1465,9 +1437,6 @@ CellularError_t Cellular_ActivatePdn( CellularHandle_t cellularHandle,
 
 /*-----------------------------------------------------------*/
 
-/* FreeRTOS Cellular Library API. */
-/* coverity[misra_c_2012_rule_8_7_violation] */
-/* coverity[misra_c_2012_rule_8_13_violation] */
 CellularError_t Cellular_GetPdnStatus( CellularHandle_t cellularHandle,
                                        CellularPdnStatus_t * pPdnStatusBuffers,
                                        uint8_t numStatusBuffers,
@@ -1525,8 +1494,6 @@ CellularError_t Cellular_GetPdnStatus( CellularHandle_t cellularHandle,
 
 /*-----------------------------------------------------------*/
 
-/* FreeRTOS Cellular Library API. */
-/* coverity[misra_c_2012_rule_8_7_violation] */
 CellularError_t Cellular_SetRatPriority( CellularHandle_t cellularHandle,
                                          const CellularRat_t * pRatPriorities,
                                          uint8_t ratPrioritiesLength )
@@ -1615,8 +1582,6 @@ CellularError_t Cellular_SetRatPriority( CellularHandle_t cellularHandle,
 
 /*-----------------------------------------------------------*/
 
-/* Get modem RAT priority setting. */
-/* coverity[misra_c_2012_rule_8_13_violation] */
 static CellularPktStatus_t _Cellular_RecvFuncGetRatPriority( CellularContext_t * pContext,
                                                              const CellularATCommandResponse_t * pAtResp,
                                                              void * pData,
@@ -1703,8 +1668,6 @@ static CellularPktStatus_t _Cellular_RecvFuncGetRatPriority( CellularContext_t *
 
 /*-----------------------------------------------------------*/
 
-/* FreeRTOS Cellular Library API. */
-/* coverity[misra_c_2012_rule_8_7_violation] */
 CellularError_t Cellular_GetRatPriority( CellularHandle_t cellularHandle,
                                          CellularRat_t * pRatPriorities,
                                          uint8_t ratPrioritiesLength,
@@ -2153,8 +2116,6 @@ CellularError_t Cellular_GetSignalInfo( CellularHandle_t cellularHandle,
 
 /*-----------------------------------------------------------*/
 
-/* FreeRTOS Cellular Library API. */
-/* coverity[misra_c_2012_rule_8_7_violation] */
 CellularError_t Cellular_SetDns( CellularHandle_t cellularHandle,
                                  uint8_t contextId,
                                  const char * pDnsServerAddress )
@@ -2221,8 +2182,6 @@ static CellularError_t controlSignalStrengthIndication( CellularContext_t * pCon
 
 /*-----------------------------------------------------------*/
 
-/* FreeRTOS Cellular Library API. */
-/* coverity[misra_c_2012_rule_8_7_violation] */
 CellularError_t Cellular_RegisterUrcSignalStrengthChangedCallback( CellularHandle_t cellularHandle,
                                                                    CellularUrcSignalStrengthChangedCallback_t signalStrengthChangedCallback,
                                                                    void * pCallbackContext )
@@ -2339,8 +2298,6 @@ static CellularPktStatus_t _Cellular_RecvFuncResolveDomainToIpAddress( CellularC
 
 /*-----------------------------------------------------------*/
 
-/* FreeRTOS Cellular Library API. */
-/* coverity[misra_c_2012_rule_8_7_violation] */
 CellularError_t Cellular_GetHostByName( CellularHandle_t cellularHandle,
                                         uint8_t contextId,
                                         const char * pcHostName,
@@ -2671,12 +2628,6 @@ CellularError_t Cellular_SetPdnConfig( CellularHandle_t cellularHandle,
 
     if( cellularStatus == CELLULAR_SUCCESS )
     {
-        /* Form the AT command. */
-
-        /* The return value of snprintf is not used.
-         * The max length of the string is fixed and checked offline. */
-        /* coverity[misra_c_2012_rule_21_6_violation]. */
-
         if( ( strstr( pdpContextsInfo.apnName[ contextId - 1 ], pPdnConfig->apnName ) == NULL ) || ( strcmp( pdpContextsInfo.ipType[ contextId - 1 ], pPdpTypeStr ) != 0 ) )
         {
             if( strcmp( pdpContextsInfo.ipType[ contextId - 1 ], pPdpTypeStr ) != 0 )
@@ -2721,8 +2672,6 @@ CellularError_t Cellular_SetPdnConfig( CellularHandle_t cellularHandle,
 
 /*-----------------------------------------------------------*/
 
-/* FreeRTOS Cellular Library API. */
-/* coverity[misra_c_2012_rule_8_7_violation] */
 CellularError_t Cellular_SetPsmSettings( CellularHandle_t cellularHandle,
                                          const CellularPsmSettings_t * pPsmSettings )
 {
@@ -2813,8 +2762,6 @@ static CellularError_t _Cellular_isSockOptSupport( CellularSocketOptionLevel_t o
 
 /*-----------------------------------------------------------*/
 
-/* FreeRTOS Cellular Library API. */
-/* coverity[misra_c_2012_rule_8_7_violation] */
 CellularError_t Cellular_SetEidrxSettings( CellularHandle_t cellularHandle,
                                            const CellularEidrxSettings_t * pEidrxSettings )
 {
