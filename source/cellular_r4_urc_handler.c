@@ -164,7 +164,7 @@ static CellularPktStatus_t _parseUrcIndicationCsq( CellularContext_t * pContext,
     CellularATError_t atCoreStatus = CELLULAR_AT_SUCCESS;
     CellularPktStatus_t pktStatus = CELLULAR_PKT_STATUS_OK;
     int32_t retStrtoi = 0;
-    int16_t csqBarLevel = CELLULAR_INVALID_SIGNAL_BAR_VALUE;
+    uint8_t csqBarLevel = CELLULAR_INVALID_SIGNAL_BAR_VALUE;
     CellularSignalInfo_t signalInfo = { 0 };
 
     if( ( pContext == NULL ) || ( pUrcStr == NULL ) )
@@ -179,7 +179,8 @@ static CellularPktStatus_t _parseUrcIndicationCsq( CellularContext_t * pContext,
 
     if( atCoreStatus == CELLULAR_AT_SUCCESS )
     {
-        if( ( retStrtoi >= INT16_MIN ) && ( retStrtoi <= ( int32_t ) INT16_MAX ) )
+        /* Possible value is 0 to 5. */
+        if( ( retStrtoi >= 0 ) && ( retStrtoi <= 5 ) )
         {
             csqBarLevel = retStrtoi;
         }
