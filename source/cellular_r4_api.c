@@ -187,7 +187,7 @@ static CellularPktStatus_t socketRecvDataPrefix( void * pCallbackContext,
             {
                 atResult = Cellular_ATStrtoi( pToken, 10, &tempValue );
 
-                if( ( tempValue < 0 ) && ( ( uint32_t ) tempValue > CELLULAR_MAX_RECV_DATA_LEN ) )
+                if( ( tempValue < 0 ) || ( ( uint32_t ) tempValue > CELLULAR_MAX_RECV_DATA_LEN ) )
                 {
                     LogError( ( "socketRecvData: Bad parameters" ) );
                     atResult = CELLULAR_AT_ERROR;
